@@ -30,7 +30,11 @@ const options = {
 flatpickr('input#datetime-picker', options);
 
 const onCountDownStart = () => {
-  setInterval(() => {
+  const intervalId = setInterval(() => {
+    if (selectedDate <= 0) {
+      clearInterval(intervalId);
+      return;
+    }
     const { days, hours, minutes, seconds } = convertMs(selectedDate);
     refs.daysField.textContent = days;
     refs.hoursField.textContent = hours;
