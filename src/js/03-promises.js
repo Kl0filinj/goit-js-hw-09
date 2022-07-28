@@ -4,6 +4,7 @@ const refs = {
   mianDelay: document.querySelector('input[name="delay"]'),
   delayStep: document.querySelector('input[name="step"]'),
   count: document.querySelector('input[name="amount"]'),
+  form: document.querySelector('.form'),
   startBtn: document.querySelector('button'),
 };
 
@@ -33,6 +34,8 @@ function onSubmited(event) {
   const countOfIterations = Number(refs.count.value);
   const mainDelay = Number(refs.mianDelay.value);
   const step = Number(refs.delayStep.value);
+  refs.form.reset();
+
   let delay = mainDelay;
   for (let index = 1; index < countOfIterations + 1; index += 1) {
     createPromise(index, delay);

@@ -31,16 +31,17 @@ flatpickr('input#datetime-picker', options);
 
 const onCountDownStart = () => {
   const intervalId = setInterval(() => {
-    if (selectedDate <= 0) {
-      clearInterval(intervalId);
-      return;
-    }
     const { days, hours, minutes, seconds } = convertMs(selectedDate);
+
     refs.daysField.textContent = days;
     refs.hoursField.textContent = hours;
     refs.minutesField.textContent = minutes;
     refs.secondsFields.textContent = seconds;
     selectedDate -= 1000;
+    if (seconds === '00') {
+      clearInterval(intervalId);
+      return;
+    }
   }, 1000);
 };
 
